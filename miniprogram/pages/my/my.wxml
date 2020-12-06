@@ -4,18 +4,12 @@
   <!--个人信息卡片-->
 	<view class="userinfo">
     <!--点击头像进入邮箱验证-->
-    <navigator url="mySetting/mySetting" hover-class="navigator-hover">
-    <image wx:if="{{userInfo && userInfo.avatarUrl}}" class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"></image></navigator>
+    <image wx:if="{{userInfo && userInfo.avatarUrl}}" class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"></image>
     <text class="userinfo-nickname">{{ userInfo.nickName }}</text>
+    <image class="setting-icon-img" src="/images/my/renzheng.png" mode="widthFix" ></image>
   </view>
  <!--小图标-->
  <view class="icon-bar">
-  <navigator url="myPost/myPost" hover-class="navigator-hover">
-    <view class="icon-bar-item">
-      <image src='../../images/my/upload.png'></image>
-      <text>我的发布</text>
-    </view>
-  </navigator>
   <navigator url="myFavourite/myFavourite" hover-class="navigator-hover">
     <view class="icon-bar-item">
       <image src='../../images/my/favorite.png'></image>
@@ -28,13 +22,37 @@
       <text>历史浏览</text>
     </view>
   </navigator>
-  <navigator url="myCart/myCart" hover-class="navigator-hover">
-    <view class="icon-bar-item">
+    <view class="icon-bar-item" bindtap="cartTap">
       <image src='../../images/my/shopcar.png'></image>
       <text>购物车</text>
     </view>
-  </navigator>
+    <view class="icon-bar-item">
+      <image src='../../images/my/love.png'></image>
+      <text>我的关注</text>
+    </view>
+    <view class="icon-bar-item">
+      <image src='../../images/my/follower.png'></image>
+      <text>我的粉丝</text>
+    </view>
   </view> 
+</view>
+<view class="information-box">
+
+<view class="text-title">
+  我的信息</view>
+
+<view class="box-item">
+  <view class="board-bar">
+    <view class="board-bar-item" bindtap="mailTap">
+      <image src='/images/my/envelope.png'></image>
+      <text style="margin-left: 20rpx">邮箱认证</text>
+    </view>
+    <view class="board-bar-item" bindtap="addressTap">
+      <image src='/images/my/home.png'></image>
+      <text style="margin-left: 20rpx">我的地址</text>
+    </view>
+  </view>
+</view>
 </view>
 
 <view class="information-box">
@@ -44,31 +62,21 @@
 
 <view class="box-item">
   <view class="board-bar">
-    <view class="board-bar-item">
-      <navigator url="myPost/myPost" hover-class="navigator-hover">
+    <view class="board-bar-item" bindtap="postTap">
       <image src='/images/my/chart.png'></image>
       <text style="margin-left: 20rpx">我发布的</text>
-    </navigator>
     </view>
-    <view class="board-bar-item">
-      <navigator url="mySell/mySell" hover-class="navigator-hover">
+    <view class="board-bar-item" bindtap="sellTap">
       <image src='/images/my/money.png'></image>
       <text style="margin-left: 20rpx">我卖出的</text>
-    </navigator>
     </view>
-    <view class="board-bar-item">
-      <navigator url="myBuy/myBuy" hover-class="navigator-hover">
+    <view class="board-bar-item" bindtap="buyTap">
       <image src='/images/my/sales.png' mode="aspectFit"></image>
       <text style="margin-left: 20rpx">我买到的</text>
-      </navigator>
     </view>
   </view>
 </view>
 </view>
+
 <!--<button class="btn_quit" bindtap='bindClear'>退出帐号</button>-->
-<view class="information-box">
-  <navigator url="addressAdmin/addressAdmin" hover-class="navigator-hover">
-<view class="text-title">
-  我的地址</view>
-  </navigator>
-</view>
+

@@ -2,12 +2,15 @@
 <view class='text-title'>修改地址</view>
 <form bindsubmit="formSubmit">
     <view class='des-block'>
+    <view class='name'>姓名</view>
     <input value="{{address.name}}" name="name" placeholder="姓名"/>
     </view>
     <view class='des-block'>
+    <view class='phone'>电话</view>
     <input type="number" name="phone" value="{{address.phone}}" placeholder="电话号码"/>
     </view>
     <view class='des-block'>
+    <view class='address'>地址</view>
     <input name="detail" value="{{address.detail}}" placeholder="详细地址"/>
     </view>
     <button class='btn' disabled="{{studentId == ''||buttonLoading ? true : false}}" loading="{{buttonLoading}}" bindtap="bindSubmit" form-type="submit">保存</button>

@@ -28,6 +28,8 @@ page{
 	background:black;
   width: 750rpx;
   height:250rpx;
+  z-index:50;
+  position: relative;
 }
 
 .userinfo-avatar {
@@ -45,7 +47,16 @@ page{
   font-size:30rpx;
 }
 
-
+.setting-icon-img{
+  width: 50rpx;
+  height: 50rpx;
+  overflow: hidden;
+  position: absolute;
+  z-index: 100;/*bigger z-index placed aboves*/
+  float:right;
+  padding-left: 48px;
+  padding-top:55px;
+}
 .version {
   width:100%;
   height: 40rpx;

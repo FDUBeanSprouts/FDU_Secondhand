@@ -138,6 +138,10 @@ addtoOrder(e)
           },
           success(res) {
             console.log('成功', res);
+            wx.showToast({
+              title: '等待卖家确认',
+              duration: 2000,
+            })
           },
         })
       }

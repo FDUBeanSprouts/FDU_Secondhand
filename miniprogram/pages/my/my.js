@@ -1,6 +1,5 @@
 //my.js
 var app = getApp()
-var StudentId = './addressAdmin/addressAdmin.js'
 Page({
   /**
    * 页面的初始数据
@@ -12,16 +11,17 @@ Page({
       nickName: '',
       avatarUrl: '', 
     },
-   
+    authorized:false,
   },
  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    var that=this
     if (app.globalData.userInfo) {
       console.log(app.globalData.userInfo)
-      this.setData({
+      that.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
@@ -29,7 +29,8 @@ Page({
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
-        this.setData({
+        console.log(res)
+        that.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
@@ -38,14 +39,26 @@ Page({
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
+          app.globalData.userInfo = res.userInfos
+          that.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
         }
       })
     }
+    wx.cloud.callFunction({
+      name: 'getUserById',
+      data:{
+        userId: 'fakeuserid1',
+      },
+      success(res) {
+        console.log('成功', res.result.data);
+        that.setData({
+          authorized: res.result.data.authorized,
+        });
+      },
+    })
   },
 
   /**
@@ -60,8 +73,6 @@ Page({
    */
   onShow: function() {
     var that = this;
-    var studentId = that.data.name;
-    console.log(studentId)
     var nickName = 'userInfo.nickName';
     var avatarUrl = 'userInfo.avatarUrl';
     //get缓存值用户名字，并设置
@@ -183,6 +194,115 @@ Page({
       }
     })
   },
+  imageTap(e){
 
+    wx.navigateTo({
 
+        url:'mailCheck/mailCheck'
+
+    })
+
+},
+cartTap(e){
+  var that=this;
+  if(that.data.authorized==true)
+  {wx.navigateTo({
+
+      url:'myCart/myCart'
+  })
+}
+else
+{
+  wx.showToast({
+    title: '认证用户才能查看',
+    icon:'none',
+    duration: 3000,
+  })
+}
+},
+addressTap(e){
+  var that=this;
+  if(that.data.authorized==true)
+  {wx.navigateTo({
+
+      url:'addressAdmin/addressAdmin'
+  })
+}
+else
+{
+  wx.showToast({
+    title: '认证用户才能修改',
+    icon:'none',
+    duration: 3000,
+  })
+}
+},
+postTap(e){
+  var that=this;
+  if(that.data.authorized==true)
+  {wx.navigateTo({
+
+      url:'myPost/myPost'
+  })
+}
+else
+{
+  wx.showToast({
+    title: '认证用户才能查看',
+    icon:'none',
+    duration: 3000,
+  })
+}
+},
+sellTap(e){
+  var that=this;
+  if(that.data.authorized==true)
+  {wx.navigateTo({
+
+      url:'mySell/mySell'
+  })
+}
+else
+{
+  wx.showToast({
+    title: '认证用户才能查看',
+    icon:'none',
+    duration: 3000,
+  })
+}
+},
+buyTap(e){
+  var that=this;
+  if(that.data.authorized==true)
+  {wx.navigateTo({
+
+      url:'myBuy/myBuy'
+  })
+}
+else
+{
+  wx.showToast({
+    title: '认证用户才能查看',
+    icon:'none',
+    duration: 3000,
+  })
+}
+},
+mailTap(e){
+  var that=this;
+  if(that.data.authorized==false)
+  {wx.navigateTo({
+
+      url:'mailCheck/mailCheck'
+  })
+}
+else
+{
+  wx.showToast({
+    title: '已认证',
+    icon:'success',
+    duration: 3000,
+  })
+}
+},
 })

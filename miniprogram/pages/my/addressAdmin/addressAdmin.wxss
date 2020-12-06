@@ -51,3 +51,23 @@ input {
   box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
   font-size: 32rpx;
 }
+.name {
+  float: left;
+  margin-top: 15rpx;
+  font-weight: bold;
+  margin-left:35rpx;
+}
+
+.phone {
+  float: left;
+  margin-top: 15rpx;
+  font-weight: bold;
+  margin-left:35rpx;
+}
+
+.address {
+  float: left;
+  margin-top: 30rpx;
+  font-weight: bold;
+  margin-left:35rpx;
+}
